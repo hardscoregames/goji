@@ -1,5 +1,5 @@
 /*
-Package web is a microframework inspired by Sinatra.
+Package web implements a fast and flexible middleware stack and mux.
 
 The underlying philosophy behind this package is that net/http is a very good
 HTTP library which is only missing a few features. If you disagree with this
@@ -41,8 +41,8 @@ Bind parameters using either Sinatra-like patterns or regular expressions:
 Middleware are functions that wrap http.Handlers, just like you'd use with raw
 net/http. Middleware functions can optionally take a context parameter, which
 will be threaded throughout the middleware stack and to the final handler, even
-if not all of these things do not support contexts. Middleware are encouraged to
-use the Env parameter to pass data to other middleware and to the final handler:
+if not all of these things support contexts. Middleware are encouraged to use
+the Env parameter to pass data to other middleware and to the final handler:
 
 	m.Use(func(h http.Handler) http.Handler {
 		handler := func(w http.ResponseWriter, r *http.Request) {
@@ -102,7 +102,7 @@ type C struct {
 	// A free-form environment, similar to Rack or PEP 333's environments.
 	// Middleware layers are encouraged to pass data to downstream layers
 	// and other handlers using this map, and are even more strongly
-	// encouraged to document and maybe namespace they keys they use.
+	// encouraged to document and maybe namespace the keys they use.
 	Env map[string]interface{}
 }
 
